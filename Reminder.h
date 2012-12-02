@@ -55,7 +55,7 @@ public:
 			if (notificationTwo) {
 				result = notificationTwo->Show(&query, 250, NULL);
 			} else {
-				result = notificationOne->Show(NULL, 250);
+				result = notificationOne->Show(&query, 250);
 			}
 		
 			notificationOne->Release();
