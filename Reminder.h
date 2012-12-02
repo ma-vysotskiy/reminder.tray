@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 
+#include "QueryContinue.h"
+
 class CReminder {
 
 	static const bool needLog = true;
@@ -14,10 +16,11 @@ class CReminder {
 			}
 		}
 public:
-	static void ShowNotification(std::basic_string<TCHAR> title, std::basic_string<TCHAR> text, DWORD type) {
+	static bool ShowNotification(std::basic_string<TCHAR> title, std::basic_string<TCHAR> text, DWORD type) {
 		HRESULT result = E_FAIL;
 		IUserNotification *notificationOne = 0;
 		IUserNotification2 *notificationTwo = 0;
+		CQueryContinue query(10000);
 
 		//Get icon.
 		HICON icon = LoadIcon(NULL, IDI_QUESTION); 
@@ -47,12 +50,16 @@ public:
 			//clicked on
 			result = notificationOne->SetBalloonRetry(0, 250, 0);
 
+			
+
 			if (notificationTwo) {
-				result = notificationTwo->Show(NULL, 250, NULL);
+				result = notificationTwo->Show(&query, 250, NULL);
 			} else {
 				result = notificationOne->Show(NULL, 250);
 			}
+		
 			notificationOne->Release();
 		}
+		return query.TimeoutReached();
 	}
 };

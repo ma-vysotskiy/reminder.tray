@@ -27,12 +27,18 @@
     <ClInclude Include="Reminder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="QueryContinue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="reminder.tray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryContinue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
